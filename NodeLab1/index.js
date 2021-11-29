@@ -16,7 +16,8 @@ const server = http.createServer((req, res) => {
     message: greeting[lang],
   };
 
-  res.writeHead(200, {'Content-Type': 'text/plain', 'Content-Language': response.lang});
+  res.writeHead(200, {'Content-Type': 'text/plain',
+                      'Content-Language': response.lang});
   res.end(response.message);
 });
 
