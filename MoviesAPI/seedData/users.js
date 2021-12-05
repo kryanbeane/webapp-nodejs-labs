@@ -8,4 +8,5 @@ const  users = [
         'password': 'test2',
     },
 ];
+
 export default users;

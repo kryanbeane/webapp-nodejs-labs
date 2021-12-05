@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 });
 
   // register(Create)/Authenticate User
-  router.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
     if (req.query.action === 'register') {  //if action is 'register' then save to DB
         await User(req.body).save();
         res.status(201).json({
@@ -28,8 +28,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-  // Update a user
-  router.put('/:id', async (req, res) => {
+// Update a user
+router.put('/:id', async (req, res) => {
     if (req.body._id) delete req.body._id;
     const result = await User.updateOne({
         _id: req.params.id,
@@ -41,4 +41,27 @@ router.get('/', async (req, res) => {
     }
 });
 
-export default router;
+router.post('/:id/favourites', async (req, res) => {
+    const newFavourite = req.body;
+    if (newFavourite && newFavourite.id) {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            user.favourites.push(newFavourite);
+            user.save();
+            res.status(201).json({ code: 201, msg: "Added Favourite" });
+        } else {
+            res.status(404).json({ code: 404, msg: 'Unable to add favourites' });
+        }
+    }
+});
+
+router.get('/:id/favourites', async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+        res.status(200).json(user.favourites);
+    } else {
+        res.status(404).json({ code: 404, msg: 'Unable to find favourites' });
+    }
+});
+
+export default router;  
