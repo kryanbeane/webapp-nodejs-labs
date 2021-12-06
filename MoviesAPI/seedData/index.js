@@ -11,10 +11,9 @@ async function loadUsers() {
   console.log('load user Data');
   try {
     await userModel.deleteMany();
-    await userModel.collection.insertMany(users);
+    await users.forEach(user => userModel.create(user));
     console.info(`${users.length} users were successfully stored.`);
-  } 
-  catch (err) {
+  } catch (err) {
     console.error(`failed to Load user Data: ${err}`);
   }
 }
