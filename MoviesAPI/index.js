@@ -5,7 +5,6 @@ import genresRouter from './api/genres'
 import usersRouter from './api/users';
 import './db';
 import './seedData';
-import session from 'express-session';
 import authenticate from './authenticate';
 import passport from './authenticate';
 
@@ -33,4 +32,5 @@ app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRou
 app.listen(port, () => {
   console.info(`Server running at ${port}`);
 });
+
 
