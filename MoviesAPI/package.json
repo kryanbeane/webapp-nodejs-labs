@@ -23,6 +23,7 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.14",
+    "node-fetch": "^2.6.6",
     "passport": "^0.5.0",
     "passport-jwt": "^4.0.0",
     "uniqid": "^5.4.0"
