@@ -1,4 +1,4 @@
-const movies = [
+export const movies = [
     {
         "adult": false,
         "backdrop_path": "/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg",
@@ -405,4 +405,3 @@ const movies = [
     }
 ];
 
-export default movies;
